@@ -1,0 +1,48 @@
+Namespace(alpha=0.0, batch_size=1024, dataset=0, dropout_ration=0.2, gpu=1, learning_rate=0.001, n_layers=1, temperature=0.7, v=0, weight_1=0.166667, weight_2=0.666667, weight_3=0.166667, weight_4=0.0, weight_L2=0.0001, weight_boundary=0.01, weight_negative=0.5, weight_ssl=1.0)
+2024-11-13 07:30:42.614 | INFO     | __main__:<module>:169 - data aleady
+2024-11-13 08:06:13.978 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [230/500]
+2024-11-13 08:06:33.360 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2482, HR@20:0.3116, HR@100:0.4265, HR@200:0.4549
+2024-11-13 08:06:33.360 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1461, NDCG@20:0.1621, NDCG@100:0.1836, NDCG@200:0.1876
+2024-11-13 08:08:10.388 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [240/500]
+2024-11-13 08:08:31.232 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2510, HR@20:0.3136, HR@100:0.4254, HR@200:0.4522
+2024-11-13 08:08:31.233 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1474, NDCG@20:0.1632, NDCG@100:0.1841, NDCG@200:0.1878
+2024-11-13 08:09:55.746 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [250/500]
+2024-11-13 08:10:14.948 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2541, HR@20:0.3146, HR@100:0.4249, HR@200:0.4532
+2024-11-13 08:10:14.948 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1497, NDCG@20:0.1650, NDCG@100:0.1856, NDCG@200:0.1896
+2024-11-13 08:11:29.489 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [260/500]
+2024-11-13 08:11:49.404 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2556, HR@20:0.3150, HR@100:0.4228, HR@200:0.4522
+2024-11-13 08:11:49.404 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1501, NDCG@20:0.1651, NDCG@100:0.1852, NDCG@200:0.1893
+2024-11-13 08:13:04.560 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [270/500]
+2024-11-13 08:13:24.337 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2569, HR@20:0.3171, HR@100:0.4230, HR@200:0.4525
+2024-11-13 08:13:24.337 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1506, NDCG@20:0.1659, NDCG@100:0.1855, NDCG@200:0.1897
+2024-11-13 08:14:52.707 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [280/500]
+2024-11-13 08:15:12.661 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2596, HR@20:0.3162, HR@100:0.4219, HR@200:0.4499
+2024-11-13 08:15:12.661 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1521, NDCG@20:0.1664, NDCG@100:0.1860, NDCG@200:0.1899
+2024-11-13 08:16:36.193 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [290/500]
+2024-11-13 08:16:55.991 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2591, HR@20:0.3164, HR@100:0.4205, HR@200:0.4497
+2024-11-13 08:16:55.992 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1523, NDCG@20:0.1668, NDCG@100:0.1861, NDCG@200:0.1902
+2024-11-13 08:18:10.012 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [300/500]
+2024-11-13 08:18:29.533 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2582, HR@20:0.3136, HR@100:0.4183, HR@200:0.4480
+2024-11-13 08:18:29.534 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1520, NDCG@20:0.1661, NDCG@100:0.1855, NDCG@200:0.1897
+
+
+
+2024-11-13 08:19:46.460 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [310/500]
+2024-11-13 08:20:07.370 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2603, HR@20:0.3140, HR@100:0.4149, HR@200:0.4482
+2024-11-13 08:20:07.371 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1534, NDCG@20:0.1670, NDCG@100:0.1857, NDCG@200:0.1903
+
+
+
+2024-11-13 08:21:44.042 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [320/500]
+2024-11-13 08:22:04.039 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2585, HR@20:0.3115, HR@100:0.4148, HR@200:0.4483
+2024-11-13 08:22:04.039 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1523, NDCG@20:0.1657, NDCG@100:0.1847, NDCG@200:0.1894
+2024-11-13 08:23:23.830 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [330/500]
+2024-11-13 08:23:43.824 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2574, HR@20:0.3089, HR@100:0.4108, HR@200:0.4471
+2024-11-13 08:23:43.824 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1525, NDCG@20:0.1655, NDCG@100:0.1843, NDCG@200:0.1893
+2024-11-13 08:25:00.475 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [340/500]
+2024-11-13 08:25:19.851 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2533, HR@20:0.3025, HR@100:0.4039, HR@200:0.4407
+2024-11-13 08:25:19.852 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1497, NDCG@20:0.1621, NDCG@100:0.1808, NDCG@200:0.1860
+2024-11-13 08:26:40.214 | INFO     | __main__:<module>:196 -  view_cart_buy : Epoch [350/500]
+2024-11-13 08:27:01.151 | INFO     | __main__:<module>:243 -  view_cart_buy | HR@10:0.2478, HR@20:0.2934, HR@100:0.3973, HR@200:0.4350
+2024-11-13 08:27:01.151 | INFO     | __main__:<module>:246 -  view_cart_buy | NDCG@10:0.1469, NDCG@20:0.1584, NDCG@100:0.1775, NDCG@200:0.1828
+
