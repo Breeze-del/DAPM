@@ -95,7 +95,7 @@ with open('preprocess/'+data_name+'/buy_test.pkl','rb') as load4:
 #     collect = pickle.load(load5)
 
 num_whole_users = len(buy_train)
-num_whole_items = 7977
+num_whole_items = max(list(chain.from_iterable(buy_train))+buy_test) + 1
 max_length_test = max([num_whole_items-len(buy_train[i]) for i in range(num_whole_users)])
 ################################################################################################################################################################
 
