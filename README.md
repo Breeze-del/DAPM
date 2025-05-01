@@ -9,10 +9,4 @@
 
 ## EXPERIMENTS
 
-Here we use the GMF as the CF basic model.
 
-How to train Beibei : python search.py 0 [GPU_ID]
-
-How to train Taobao : python search.py 1 [GPU_ID]
-
-Our model will be restored in the checkpoints.
