@@ -38,12 +38,6 @@ class Model(torch.nn.Module):
         # self.gate_user_collect = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
         # self.gate_item_collect = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
 
-        # # 定义线性层，用于生成查询 (Q)、键 (K) 和值 (V)
-        # self.query_fc = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
-        # self.key_fc = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
-        # self.value_fc = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
-        # # 输出的线性变换
-        # self.fc = torch.nn.Linear(self.dim_embedding, self.dim_embedding)
 
         self.embedding_user = torch.nn.Embedding(num_embeddings=self.num_users, embedding_dim=self.dim_embedding)
         self.embedding_item = torch.nn.Embedding(num_embeddings=self.num_items, embedding_dim=self.dim_embedding)
@@ -358,92 +352,47 @@ class Model(torch.nn.Module):
         contrastive_loss = contrastive_loss_b2v + contrastive_loss_b2c  +contrastive_loss_b2b + contrastive_loss_b2all
         return contrastive_loss
 
-    def attention_fusion(self, A, B):
-        """
-        # 前向传播函数
-        # :param A: 视图 A 的嵌入矩阵 (batch_size, input_dim)
-        # :param B: 视图 B 的嵌入矩阵 (batch_size, input_dim)
-        # :return: 融合后的矩阵 C
-        # """
-        # 计算查询 (Q)、键 (K) 和值 (V)
-        Q = self.query_fc(A)  # (batch_size, input_dim)
-        K = self.key_fc(B)  # (batch_size, input_dim)
-        V = self.value_fc(B)  # (batch_size, input_dim)
-
-        # 计算注意力分数: Q * K^T / sqrt(d_k)
-        attention_scores = torch.matmul(Q, K.transpose(-1, -2)) / torch.sqrt(
-            torch.tensor(self.dim_embedding, dtype=torch.float32))
-
-        # 通过 softmax 计算注意力权重
-        attention_weights = torch.softmax(attention_scores, dim=-1)
-
-        # 用注意力权重加权值 V
-        attn_output = torch.matmul(attention_weights, V)
-
-        # 通过线性层将注意力输出进一步融合
-        C = self.fc(attn_output)
-        return C
 
     def lightgcn_propagate(self, user_emb, item_emb, adj_matrix, num_layers=3):
-        """
-        基于 LightGCN 的图嵌入函数，执行多层图卷积更新用户和项目的嵌入。
-
-        参数:
-        - user_emb: 初始用户嵌入，形状为 (num_users, emb_dim)
-        - item_emb: 初始项目嵌入，形状为 (num_items, emb_dim)
-        - adj_matrix: 归一化后的邻接矩阵，形状为 (num_users + num_items, num_users + num_items)
-        - num_layers: 图传播层数，默认 3 层
-
-        返回:
-        - updated_user_emb: 更新后的用户嵌入
-        - updated_item_emb: 更新后的项目嵌入
-        """
+       
         adj_matrix = self.convert_to_torch_sparse(adj_matrix).cuda()
-        # 将用户和项目嵌入拼接在一起
-        all_emb = torch.cat([user_emb, item_emb[:-1,:]], dim=0)  # 拼接为大矩阵
+       
+        all_emb = torch.cat([user_emb, item_emb[:-1,:]], dim=0)  
 
-        # 初始化嵌入的列表，包括初始嵌入
+       
         all_layer_embs = [all_emb]
 
-        # 开始进行图传播，执行 num_layers 层图卷积
+       
         for layer in range(num_layers):
-            # 使用归一化邻接矩阵进行信息传播 (图卷积)
-            all_emb = torch.sparse.mm(adj_matrix, all_emb)  # 使用稀疏矩阵相乘
+           
+            all_emb = torch.sparse.mm(adj_matrix, all_emb)  
 
-            # 保存每一层的嵌入
+            
             all_layer_embs.append(all_emb)
 
-        # 将每层的嵌入进行平均，形成最终的嵌入 (即使用 skip-connection 的方法)
+       
         final_emb = sum(all_layer_embs) / (num_layers + 1)
 
-        # 将用户和项目的嵌入分开
-        updated_user_emb = final_emb[:user_emb.shape[0], :]  # 用户嵌入
-        updated_item_emb = final_emb[user_emb.shape[0]:, :]  # 项目嵌入
+       
+        updated_user_emb = final_emb[:user_emb.shape[0], :]  
+        updated_item_emb = final_emb[user_emb.shape[0]:, :]  
         token_embedding = torch.zeros([1, self.dim_embedding]).cuda()
-        # (7978,64)
+       
         updated_item_emb = torch.cat([updated_item_emb, token_embedding], 0)
 
         return updated_user_emb, updated_item_emb
 
     def convert_to_torch_sparse(self, sparse_matrix):
-        """
-        将 scipy 的稀疏矩阵转换为 PyTorch 的稀疏矩阵。
-
-        参数:
-        - sparse_matrix: scipy 的稀疏矩阵（coo_matrix 或 csr_matrix）
-
-        返回:
-        - torch_sparse_matrix: PyTorch 稀疏矩阵
-        """
+        
         if isinstance(sparse_matrix, csr_matrix):
-            sparse_matrix = sparse_matrix.tocoo()  # 转换为 coo 格式
+            sparse_matrix = sparse_matrix.tocoo()  
 
-        # 获取数据、行索引和列索引
+       
         indices = np.vstack((sparse_matrix.row, sparse_matrix.col))
         values = sparse_matrix.data
         size = sparse_matrix.shape
 
-        # 创建 PyTorch 稀疏矩阵
+        
         torch_sparse_matrix = torch.sparse_coo_tensor(indices, values, size).to(torch.float32)
 
         return torch_sparse_matrix
