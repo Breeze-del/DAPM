@@ -22,9 +22,9 @@ parser.add_argument('--batch_size', default='1024', type=int,
 parser.add_argument('--weight_negative', default='0.5', type=float,
                         help='weight for negative entry.')
 parser.add_argument('--alpha', default='0.0', type=float,
-                        help='alpha.')
+                        help='Ratio of rejection boundary to acceptance boundary.')
 parser.add_argument('--gpu', default='0', type=int,
-                        help='Dataset name.')
+                        help='GPU ID')
 parser.add_argument('--dataset', default='0', type=int,
                         help='0 for beibei and 1 for taobao，2 for tmall ')
 parser.add_argument('--v', default='0', type=int,
