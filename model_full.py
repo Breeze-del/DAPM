@@ -283,7 +283,7 @@ class Model(torch.nn.Module):
         # similarity_A_A = torch.matmul(A, A.T) / temperature
 
         # Positive pairs: A_i and B_i
-        pos_sim = torch.exp(torch.diag(similarity_A_B))  # 正样本 A_i 和 B_i 的相似度
+        pos_sim = torch.exp(torch.diag(similarity_A_B))
 
         # For negative pairs:
         # - A_i and B_j (j != i)
@@ -330,11 +330,11 @@ class Model(torch.nn.Module):
         mask = torch.eye(batch_size, dtype=torch.bool).to(A.device)
 
         # For positive pairs, similarity is 1
-        pos_sim = torch.exp(torch.ones(batch_size).to(A.device) / temperature)  # 正样本得分为1
+        pos_sim = torch.exp(torch.ones(batch_size).to(A.device) / temperature)  
 
         # For negative pairs, sum the similarities of all A_i with A_j (i != j)
-        neg_sim = torch.exp(similarity_matrix.masked_fill(mask, float('-inf')))  # 负样本相似度
-        neg_sim_sum = neg_sim.sum(dim=1)  # 每个样本的负样本相似度总和
+        neg_sim = torch.exp(similarity_matrix.masked_fill(mask, float('-inf')))  
+        neg_sim_sum = neg_sim.sum(dim=1)  
 
         # Contrastive loss is the negative log of the positive similarity over the negative similarities
         loss = -torch.log(pos_sim / neg_sim_sum).mean()
