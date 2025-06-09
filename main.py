@@ -30,13 +30,13 @@ parser.add_argument('--dataset', default='0', type=int,
 parser.add_argument('--v', default='0', type=int,
                         help='show the training process')
 parser.add_argument('--weight_1', default='0.166667', type=float,
-                        help='Dataset name.')
+                        help='Behavior coefficient of view.')
 parser.add_argument('--weight_2', default='0.666667', type=float,
-                        help='Dataset name.')
+                        help='Behavior coefficient of cart.')
 parser.add_argument('--weight_3', default='0.166667', type=float,
-                        help='Dataset name.')
+                        help='Behavior coefficient of buy.')
 parser.add_argument('--weight_4', default='0.0', type=float,
-                        help='Dataset name.')
+                        help='Behavior coefficient of collect.')
 parser.add_argument('--n_layers', default='1', type=int,
                         help='num_layers for GCN.')
 parser.add_argument('--temperature', default='0.7', type=float,
