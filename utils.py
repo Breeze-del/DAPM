@@ -70,7 +70,7 @@ def convert_sp_mat_to_sp_tensor(X):
 def get_sparsity(data_name, num):
     def get_sparsity_split():
         split_uids, split_state = [], []
-        lines = open('/home/sdc_3_7T/MHFangGPU/lqfCode/CHCF-main/preprocess/' + data_name + '/sparsity/sparsity.split', 'r').readlines()
+        lines = open('/home/sdc_3_7T/MHFangGPU/lqfCode/DAPM/preprocess/' + data_name + '/sparsity/sparsity.split', 'r').readlines()
 
         for idx, line in enumerate(lines):
             if idx % 2 == 0:
@@ -79,13 +79,13 @@ def get_sparsity(data_name, num):
                 split_uids.append([int(uid) for uid in line.strip().split(' ')])
         return split_uids[0], split_state[0]
 
-    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/CHCF-main/preprocess/' + data_name + '/view.pkl', 'rb') as load1:
+    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/DAPM/preprocess/' + data_name + '/view.pkl', 'rb') as load1:
         view = pickle.load(load1)
-    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/CHCF-main/preprocess/' + data_name + '/cart.pkl', 'rb') as load1:
+    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/DAPM/preprocess/' + data_name + '/cart.pkl', 'rb') as load1:
         cart = pickle.load(load1)
-    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/CHCF-main/preprocess/' + data_name + '/buy_train.pkl', 'rb') as load1:
+    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/DAPM/preprocess/' + data_name + '/buy_train.pkl', 'rb') as load1:
         buy_train = pickle.load(load1)
-    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/CHCF-main/preprocess/' + data_name + '/buy_test.pkl', 'rb') as load1:
+    with open('/home/sdc_3_7T/MHFangGPU/lqfCode/DAPM/preprocess/' + data_name + '/buy_test.pkl', 'rb') as load1:
         buy_test = pickle.load(load1)
     tp = []
     uid, _ = get_sparsity_split()
